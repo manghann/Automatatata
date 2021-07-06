@@ -1,0 +1,5 @@
+streamlit==0.84.0
+visual-automata==1.1.1
+itertools
+base64
+requests
