@@ -17,7 +17,7 @@ def render_svg(svg):
 
 # Use the full page 
 st.set_page_config(layout="wide")
-st.title("Deterministic Finite Automaton (DFA) Simulator")
+st.title("Deterministic Finite Automaton (DFA) Simulator 🟢🔴🟡")
 
 # Divide by columns
 c1, c2,c3 = st.beta_columns(3)
