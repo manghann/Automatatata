@@ -6,3 +6,4 @@ visual-automata==1.1.1
 graphviz==0.16
 requests==2.24.0
 setuptools==47.1.0
+base64==3.4
