@@ -1,10 +1,13 @@
-import streamlit as st
+"""
+    Display: Regex & CFG
+    Input: any string
+    Outputs: (1) "Valid" or "Invalid" checker result based on DFA 
+             (2) DFA Simulation of the inputted string
+"""
+import streamlit as st                          # Library for web app framework (see Streamlit API docu  @ discuss.streamlit.io/t/streamlit-cheat-sheet/4912)
+import base64                                   # For rendering SVG to Streamlit (SVG - the DFA file format)
+import requests                                 
 from visual_automata.fa.dfa import VisualDFA
-
-#from PIL import Image
-import itertools
-import base64
-import requests
 
 r1 = "RegEx 1. (bab+bbb)b*a*(a*+b*)(ab)*(aba)(bab+aba)*bb(a+b)*(bab+aba)(a+b)*"
 r2 = "RegEx 2. (1+0)*0*1*(111+00+101)(1+0)*(101+01+000)(1+0)*(101+000)*"
@@ -19,9 +22,8 @@ def render_svg(svg):
 st.set_page_config(layout="wide")
 st.title("Deterministic Finite Automaton (DFA) Simulator 🟢🔴🟡")
 
-# Divide by columns
+# Divide page by columns of equal size
 c1, c2,c3 = st.beta_columns(3)
-
   
 with c1:    
     st.subheader("① Choose a Regular Expression")
@@ -32,9 +34,12 @@ with c2:
 
 st.markdown("---")    
 st.markdown("## DFA Simulation")
+
+# Display chosen RegEx
 st.text(user_choice)
 
 if user_choice == r1:
+    """ Creates DFA represented by a 5-tuple (Q - states, ∑ - input symbols, δ - transitions, q0 - initial state, F - final state) """
     dfa = VisualDFA(
         states={'0', '1', '2','3','4', '5', '6','7','8', '9', '10','11',
        '12', '13', '14','15','16', '17', '18','19','20', '21', '22'},
@@ -116,7 +121,7 @@ try:
         test = st.button('Test')
            
     if test and not string:
-        c3.write("You need to enter a string!")
+        c3.write("You need to enter a string!")         # Error message
     elif user_choice == c1 or c2 and test:
         try: 
             checker = dfa.input_check(string)
@@ -131,18 +136,22 @@ try:
         c3.write("**" + result + "**")
                   
    
+    # Reformat and save DFA as .svg
     DFA.format = "svg"
     DFA.render("simulation")
+
+    # Open the saved .svg file from local directory
     s = open("simulation.svg","r")
     lines = s.readlines()
-    line_string=''.join(lines)
+    DFA_Final=''.join(lines)
 
+    # Display inputted string
     st.write("Transition graph for string **" + string + "**.")  
 
     # Display DFA Simulation
-    render_svg(line_string)
+    render_svg(DFA_Final)
 
 except:
     st.empty()
-    print('Finished. NT.')
+    print('Finished...')
 
