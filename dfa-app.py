@@ -12,12 +12,6 @@ from visual_automata.fa.dfa import VisualDFA
 r1 = "RegEx 1. (bab+bbb)b*a*(a*+b*)(ab)*(aba)(bab+aba)*bb(a+b)*(bab+aba)(a+b)*"
 r2 = "RegEx 2. (1+0)*0*1*(111+00+101)(1+0)*(101+01+000)(1+0)*(101+000)*"
 
-def render_svg(svg):
-    """Renders the given svg string."""
-    b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
-    img = r'<img src="data:image/svg+xml;base64,%s" height="350" width="1750"/>' % b64
-    st.write(img, unsafe_allow_html=True)
-
 # Use the full page 
 st.set_page_config(layout="wide")
 st.title("Deterministic Finite Automaton (DFA) Simulator 🟢🔴🟡")
@@ -39,7 +33,7 @@ st.markdown("## DFA Simulation")
 st.text(user_choice)
 
 if user_choice == r1:
-    """ Creates DFA represented by a 5-tuple (Q - states, ∑ - input symbols, δ - transitions, q0 - initial state, F - final state) """
+    # Creates DFA represented by a 5-tuple (Q - states, ∑ - input symbols, δ - transitions, q0 - initial state, F - final state)
     dfa = VisualDFA(
         states={'0', '1', '2','3','4', '5', '6','7','8', '9', '10','11',
        '12', '13', '14','15','16', '17', '18','19','20', '21', '22'},
@@ -148,10 +142,17 @@ try:
     # Display inputted string
     st.write("Transition graph for string **" + string + "**.")  
 
+    def render_svg(svg):
+      """Renders the given svg string."""
+      b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
+      img = r'<img src="data:image/svg+xml;base64,%s" height="350" width="1750"/>' % b64
+      st.write(img, unsafe_allow_html=True)
+
     # Display DFA Simulation
     render_svg(DFA_Final)
 
 except:
     st.empty()
     print('Finished...')
+
 
