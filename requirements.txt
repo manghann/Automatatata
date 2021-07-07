@@ -1,8 +1,0 @@
-streamlit==0.82.0
-automata-lib==4.0.0.post1
-colormath==3.0.0
-forbiddenfruit==0.1.4
-visual-automata==1.1.1
-graphviz==0.16
-requests==2.24.0
-setuptools==47.1.0
