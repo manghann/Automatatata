@@ -129,9 +129,13 @@ try:
             result = "INVALID ⭕ "
         c3.write("**" + result + "**")
                   
-   
+    # ------------------------------------------------------------
+    # Option B to Display DFA Simulation
     st.write(dfa.show_diagram(string))
 
+    # ------------------------------------------------------------
+    # Option A to Display DFA Simulation using base64
+    
     # Reformat and save DFA as .svg
     DFA.format = "svg"
     DFA.render("simulation")
