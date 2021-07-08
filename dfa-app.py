@@ -130,6 +130,8 @@ try:
         c3.write("**" + result + "**")
                   
    
+    st.write(dfa.show_diagram(string))
+
     # Reformat and save DFA as .svg
     DFA.format = "svg"
     DFA.render("simulation")
@@ -149,7 +151,7 @@ try:
       st.write(img, unsafe_allow_html=True)
 
     # Display DFA Simulation
-    render_svg(DFA_Final)
+    #render_svg(DFA_Final)
 
 except:
     st.empty()
